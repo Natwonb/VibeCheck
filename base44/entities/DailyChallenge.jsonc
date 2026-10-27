@@ -1,0 +1,49 @@
+{
+  "name": "DailyChallenge",
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string",
+      "default": "prompt"
+    },
+    "text": {
+      "type": "string"
+    },
+    "hint": {
+      "type": "string"
+    },
+    "points": {
+      "type": "number",
+      "default": 25
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "date",
+    "text"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

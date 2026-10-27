@@ -1,0 +1,54 @@
+{
+  "name": "PersonalityResult",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "result_key": {
+      "type": "string"
+    },
+    "result_title": {
+      "type": "string"
+    },
+    "emoji": {
+      "type": "string"
+    },
+    "scores": {
+      "type": "object"
+    },
+    "answers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "user_id",
+    "result_key"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "data.user_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

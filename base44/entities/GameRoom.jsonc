@@ -1,0 +1,96 @@
+{
+  "name": "GameRoom",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "most_likely",
+        "would_you_rather",
+        "hot_take"
+      ]
+    },
+    "host_id": {
+      "type": "string"
+    },
+    "host_name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "lobby",
+        "playing",
+        "finished"
+      ],
+      "default": "lobby"
+    },
+    "players": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string"
+          },
+          "display_name": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "question_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "round_index": {
+      "type": "number",
+      "default": 0
+    },
+    "revealed": {
+      "type": "boolean",
+      "default": false
+    },
+    "winner_name": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "code",
+    "mode",
+    "host_id"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

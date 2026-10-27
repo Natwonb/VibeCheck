@@ -1,0 +1,82 @@
+{
+  "name": "Question",
+  "type": "object",
+  "properties": {
+    "mode": {
+      "type": "string",
+      "enum": [
+        "most_likely",
+        "would_you_rather",
+        "hot_take"
+      ]
+    },
+    "text": {
+      "type": "string"
+    },
+    "option_a": {
+      "type": "string"
+    },
+    "option_b": {
+      "type": "string"
+    },
+    "option_c": {
+      "type": "string"
+    },
+    "option_d": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "pack": {
+      "type": "string",
+      "default": "free"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    },
+    "votes_a": {
+      "type": "number",
+      "default": 0
+    },
+    "votes_b": {
+      "type": "number",
+      "default": 0
+    },
+    "votes_c": {
+      "type": "number",
+      "default": 0
+    },
+    "votes_d": {
+      "type": "number",
+      "default": 0
+    },
+    "report_count": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "mode",
+    "text"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
